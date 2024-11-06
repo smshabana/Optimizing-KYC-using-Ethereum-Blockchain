@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request 
 import json
 from web3 import Web3, HTTPProvider
-from datetime import datetime
+from datetime import datetime[p[-7]]
 import pickle
 
 app = Flask(__name__)
@@ -15,11 +15,11 @@ def readDetails(contract_type):
     global details
     details = ""
     print(contract_type+"======================")
-    blockchain_address = 'http://127.0.0.1:9545' #Blokchain connection IP
+    blockchain_address = 'http://127.0.0.1:8545' #Blokchain connection IP
     web3 = Web3(HTTPProvider(blockchain_address))
     web3.eth.defaultAccount = web3.eth.accounts[0]
-    compiled_contract_path = 'KYC.json' 
-    deployed_contract_address = '0x4051f49c482DD5e801E2A63611a9607CdC45616D' #hash address to access bank contract
+    compiled_contract_path = 'KYC.json'
+    deployed_contract_address = '0x5830eD9AF84087500F6702e3E1D375dDD4AdDa7E' #hash address to access bank contract
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
@@ -40,11 +40,11 @@ def saveDataBlockChain(currentData, contract_type):
     global details
     global contract
     details = ""
-    blockchain_address = 'http://127.0.0.1:9545'
+    blockchain_address = 'http://127.0.0.1:8545'
     web3 = Web3(HTTPProvider(blockchain_address))
     web3.eth.defaultAccount = web3.eth.accounts[0]
     compiled_contract_path = 'KYC.json' 
-    deployed_contract_address = '0x4051f49c482DD5e801E2A63611a9607CdC45616D' #bank contract address
+    deployed_contract_address = '0x5830eD9AF84087500F6702e3E1D375dDD4AdDa7E' #bank contract address
     with open(compiled_contract_path) as file:
         contract_json = json.load(file)  # load contract info as JSON
         contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
